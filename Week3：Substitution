@@ -1,0 +1,46 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(int argc, string argv[])
+{
+    if (argc == 2)
+    {
+        string key0 = argv[1];
+        const int LENG = strlen(key0);
+        char key[LENG + 1];
+        for (int i = 0; i < LENG; i++)
+        {
+            key[i] = toupper(key0[i]);
+        }
+        key[LENG] = '\0';
+        if (LENG == 26)
+        {
+            string plaintext0 = get_string("Plaintext: \n");
+            const int LENGTH = strlen(plaintext0);
+            char plaintext[LENGTH + 1];
+            for (int i = 0; i < LENGTH; i++)
+            {
+                plaintext[i] = toupper(plaintext0[i]);
+            }
+            plaintext[LENGTH] = '\0';
+            char ciphertext[LENGTH + 1];
+            for (int i = 0 ; i < LENGTH ; i++)
+            {
+                int loct = plaintext[i] - 65;
+                ciphertext[i] = key[loct];
+            }
+            ciphertext[LENGTH] = '\0';
+            printf("ciphertext: %s\n",ciphertext);
+        }
+        else
+        {
+            printf("The key must contain 26 letters\n");
+        }
+    }
+    else
+    {
+        printf("Print keys\n");
+    }
+}
