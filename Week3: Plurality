@@ -128,8 +128,7 @@ void print_winner(void)
 
     for (int i = 0; i < count ;i++)
     {
-        printf("%s ",winners[i]);
+        printf("%s\n",winners[i]);
     }
-    printf("\n");
     return;
 }
