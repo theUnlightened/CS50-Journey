@@ -98,35 +98,147 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
-    // TODO
-    return false;
+    int num = 0;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (strcmp(name,candidates[i])==0)
+        {
+            num++;
+        }
+    }
+
+    if (num != 0)
+    {
+        ranks[rank] = name;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    // TODO
-    return;
+    int rk[candidate_count];
+    for (int j = 0; j < candidate_count; i++)
+    {
+        for (int i = 0; i < candidate_count; i++)
+        {
+            if (rank[i] == candidates[j])
+            {
+                rk[j] = i;
+            }
+        }
+    }
+
+    int prf[candidates_count][candidates_count];
+    for (int i = 0 ;i < candidates_count; i++)
+    {
+        for (int j = 0; j < candidates_count; i++)
+        {
+            prf[i][j] = 0;
+        }
+    }
+    for (int i = 0 ;i < candidates_count; i++)
+    {
+        for (int j = 0; j < candidates_count; i++)
+        {
+            if (rk[i] > rk[j])
+            {
+                prf[j][i]++;
+            }
+        }
+    }
+
+    for (int i = 0 ;i < candidates_count; i++)
+    {
+        for (int j = 0; j < candidates_count; i++)
+        {
+            if (prf[i][j] = 1)
+            {
+                preferences[i][j]++;
+            }
+        }
+    }
+    return 0;
 }
 
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
-    // TODO
-    return;
+    int rk[candidate_count];
+    for (int j = 0; j < candidate_count; i++)
+    {
+        for (int i = 0; i < candidate_count; i++)
+        {
+            if (rank[i] == candidates[j])
+            {
+                rk[j] = i;
+            }
+        }
+    }
+
+    for (int i = 0 ;i < MAX; i++)
+    {
+        for (int j = 0; j < MAX; i++)
+        {
+            int d = MAX * i + j;
+            if (rk[i] > rk[j])
+            {
+               pair[d].winner= j;
+               pair[d].loser= i;
+            }
+            else
+            {
+                pair[d].winner= 0;
+                pair[d].loser= 0;
+            }
+        }
+    }
 }
 
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
-    // TODO
+    int minus[MAX * (MAX - 1) / 2];
+    for (int i = 0; i <(MAX * (MAX - 1) / 2); i++)
+    {
+        minus[i]=pair[i].winner - pair[i].loser;
+    }
+
+    for (int i = 1 ; i <(MAX * (MAX - 1) / 2); i++)
+    {
+        for (int j = 0 ; j < i; j++)
+        {
+            if (minus[j]<minus[i])
+            {
+                int jw = pair[j].winner;
+                int jl = pair[j].loser;
+                int iw = pair[i].winner;
+                int il = pair[i].loser;
+
+                pair[j].winner = iw;
+                pair[j].loser = il;
+                pair[i].winner = jw;
+                pair[i].loser = jl;
+            }
+        }
+    }
     return;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    // TODO
+    for( int i = 1 ; i < MAX ; i++)
+    {
+        for( int i = 1 ; i < MAX; i++)
+        {
+
+        }
+    }
     return;
 }
 
@@ -136,4 +248,3 @@ void print_winner(void)
     // TODO
     return;
 }
-
